@@ -14,7 +14,7 @@ export class NegociacaoController {
 
     adiciona(): void {
         const negociacao = this.criaNegociacao();
-        console.log(negociacao);
+        console.log(negociacao + "teste");
         this.limpaFormulario();
     }
 
@@ -32,4 +32,5 @@ export class NegociacaoController {
         this.inputValor.value = "";
         this.inputDate.focus();
     }
+    
 }
