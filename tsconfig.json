@@ -1,9 +1,18 @@
 {
   "compilerOptions": {
-      "outDir": "dist/js",
-      "target": "ES6",
-      "noEmitOnError": true,
-      "noImplicitAny": true
+    "target": "es6",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "outDir": "dist",
   },
-  "include": ["app/**/*"]
-}
+  "include": [
+    "app",
+    "*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+
+  ]
+} 
