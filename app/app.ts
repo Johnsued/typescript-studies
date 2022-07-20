@@ -8,5 +8,3 @@ form.addEventListener('submit', event => {
     controller.adiciona();
 })
 
-const negociacoesView = new NegociacoesView("#negociacoesView");
-
