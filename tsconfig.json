@@ -5,14 +5,16 @@
     "moduleResolution": "node",
     "isolatedModules": true,
     "outDir": "dist",
+    
   },
   "include": [
-    "app",
-    "*.ts"
+    "app/**/*",
+    "*.ts",
   ],
   "exclude": [
     "node_modules",
     "dist"
 
-  ]
+  ],
+  
 } 
