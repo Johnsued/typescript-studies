@@ -2,6 +2,7 @@ import { Negociacao } from "../models/negociacao";
 import { Negociacoes } from "../models/negociacoes";
 import { MensagemView } from "../views/mensagem-view";
 import { NegociacoesView } from "../views/negociacoes-view";
+import { OutraMensagem } from "../views/outra-mensagem";
 
 export class NegociacaoController {
     private inputDate: HTMLInputElement;
@@ -10,6 +11,7 @@ export class NegociacaoController {
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView("#negociacoesView");
     private mensagemView = new MensagemView('#mensagemView');
+    private outraMensagem  = new OutraMensagem('#outraMensagem');
 
     constructor() {
         this.inputDate = document.querySelector('#data');
@@ -24,6 +26,7 @@ export class NegociacaoController {
         this.negociacoes.adiciona(negociacao);
         this.negociacoesView.update(this.negociacoes);
         this.mensagemView.update('Negociação adicionada com secesso!');
+        this.outraMensagem.update('Negociação já adicionada por john!');
         this.limpaFormulario();
     }
 
