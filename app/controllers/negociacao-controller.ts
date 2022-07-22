@@ -1,6 +1,5 @@
 import { Negociacao } from "../models/negociacao";
 import { Negociacoes } from "../models/negociacoes";
-import { MensagemView } from "../views/mensagem-view";
 import { NegociacoesView } from "../views/negociacoes-view";
 import { OutraMensagem } from "../views/outra-mensagem";
 
@@ -10,7 +9,6 @@ export class NegociacaoController {
     private inputValor: HTMLInputElement;
     private negociacoes = new Negociacoes();
     private negociacoesView = new NegociacoesView("#negociacoesView");
-    private mensagemView = new MensagemView('#mensagemView');
     private outraMensagem  = new OutraMensagem('#outraMensagem');
 
     constructor() {
@@ -21,16 +19,20 @@ export class NegociacaoController {
          
     }
 
-    adiciona(): void {
+    public adiciona(): void {
         const negociacao = this.criaNegociacao();
-        this.negociacoes.adiciona(negociacao);
-        this.negociacoesView.update(this.negociacoes);
-        this.mensagemView.update('Negociação adicionada com secesso!');
-        this.outraMensagem.update('Negociação já adicionada por john!');
-        this.limpaFormulario();
+        if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
+            this.negociacoes.adiciona(negociacao);
+            this.limpaFormulario();
+            this.atualizaView();
+        } else {
+            this.outraMensagem
+            .update('Apenas negociações em dias úteis são permitidas');
+        }
+     
     }
 
-    criaNegociacao(): Negociacao {
+    private criaNegociacao(): Negociacao {
         const exp = /-/g;
         const date = new Date(this.inputDate.value.replace(exp, ','));
         const quantidade = parseInt( this.inputQuantidade.value);
@@ -38,11 +40,18 @@ export class NegociacaoController {
         return new Negociacao(date, quantidade, valor);
     }
 
-    limpaFormulario(): void{
+    private limpaFormulario(): void{
         this.inputDate.value = "";
         this.inputQuantidade.value= "";
         this.inputValor.value = "";
         this.inputDate.focus();
     }
+
+    private atualizaView():void{
+        this.negociacoesView.update(this.negociacoes);
+        this.outraMensagem.update('Negociação já adicionada por john!');
+    }
+
+
     
 }
