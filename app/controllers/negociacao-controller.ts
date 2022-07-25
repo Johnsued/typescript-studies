@@ -21,6 +21,7 @@ export class NegociacaoController {
 
     public adiciona(): void {
         const negociacao = this.criaNegociacao();
+        console.log(negociacao);
         if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
             this.negociacoes.adiciona(negociacao);
             this.limpaFormulario();
@@ -49,7 +50,7 @@ export class NegociacaoController {
 
     private atualizaView():void{
         this.negociacoesView.update(this.negociacoes);
-        this.outraMensagem.update('Negociação já adicionada por john!');
+        this.outraMensagem.update('Negociação adicionada com sucesso!');
     }
 
 
