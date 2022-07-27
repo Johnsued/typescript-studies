@@ -19,7 +19,8 @@ export class NegociacoesView extends View<Negociacoes>{
             return `
                     <tr>
                         <td>
-                            ${this.formatar(negociacao.data)}
+                            ${this
+                                .formatar(negociacao.data)}
                         </td>
 
                         <td>

@@ -21,17 +21,16 @@ export class NegociacaoController {
 
     public adiciona(): void {
         const negociacao = this.criaNegociacao(); 
-        const weekDay = negociacao.data.getDay();
         
-        if (weekDay == 0 || weekDay > 6) {
-            this.outraMensagem
-            .update('Apenas negociações em dias úteis são permitidas');
-            
-        } else {
+        if (negociacao.data.getDay() > 0 && negociacao.data.getDay() < 6) {
             this.negociacoes.adiciona(negociacao);
             this.limpaFormulario();
             this.atualizaView();
-            return
+           
+            
+        } else {
+            this.outraMensagem
+            .update("Apenas negociações em dias úteis são permitidas");
         }
      
     }
@@ -53,7 +52,9 @@ export class NegociacaoController {
 
     private atualizaView():void{
         this.negociacoesView.update(this.negociacoes);
-        this.outraMensagem.update('Negociação adicionada com sucesso!');
+        this.outraMensagem.update("Negociação adicionada com sucesso");
+        
+        
     }
 
 
